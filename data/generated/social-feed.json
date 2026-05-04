@@ -1,13 +1,13 @@
 [
   {
-    "id": "instagram_seed_annadaan",
+    "id": "instagram_dummy_annadaan",
     "provider": "instagram",
-    "providerPostId": "seed_annadaan",
+    "providerPostId": "dummy_annadaan",
     "accountName": "@brajjancare",
     "url": "https://www.instagram.com/brajjancare/",
     "publishedAt": "2026-05-04T02:17:00Z",
     "title": "Serving the Braj Community",
-    "caption": "A glimpse into our recent food distribution drive at the Yamuna ghats. Grateful for the continued support of our global family.",
+    "caption": "Dummy social data is active because no social provider credentials were configured for this build.",
     "media": [
       {
         "type": "image",
@@ -16,6 +16,7 @@
       }
     ],
     "tags": [
+      "dummy",
       "annadaan",
       "seva"
     ],
@@ -25,16 +26,17 @@
     }
   },
   {
-    "id": "facebook_seed_literacy",
+    "id": "facebook_dummy_literacy",
     "provider": "facebook",
-    "providerPostId": "seed_literacy",
+    "providerPostId": "dummy_literacy",
     "accountName": "Braj Jan Care Foundation",
     "url": "https://www.facebook.com/brajjancare/",
     "publishedAt": "2026-05-03T11:00:00Z",
     "title": "Village Learning Circle Begins",
-    "caption": "Today we opened a small learning circle for children near Govardhan. Education is a daily blessing when the whole community carries it together.",
+    "caption": "This generated fallback keeps the static build healthy when live social tokens are unavailable.",
     "media": [],
     "tags": [
+      "dummy",
       "education",
       "community"
     ],
@@ -44,14 +46,14 @@
     }
   },
   {
-    "id": "instagram_seed_temple",
+    "id": "instagram_dummy_heritage",
     "provider": "instagram",
-    "providerPostId": "seed_temple",
+    "providerPostId": "dummy_heritage",
     "accountName": "@brajjancare",
     "url": "https://www.instagram.com/brajjancare/",
     "publishedAt": "2026-05-02T06:45:00Z",
     "title": "Heritage In Every Stone",
-    "caption": "A quiet morning documenting temple details before our volunteer cleanup round through the lanes of Vrindavan.",
+    "caption": "Prototype-friendly fallback media keeps the gallery and social pages renderable in local and CI builds.",
     "media": [
       {
         "type": "image",
@@ -60,6 +62,7 @@
       }
     ],
     "tags": [
+      "dummy",
       "heritage",
       "vrindavan"
     ],

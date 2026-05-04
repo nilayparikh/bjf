@@ -1,8 +1,8 @@
 [
   {
-    "id": "instagram_seed_annadaan_1",
+    "id": "instagram_dummy_annadaan_media_1",
     "provider": "instagram",
-    "providerPostId": "seed_annadaan",
+    "providerPostId": "dummy_annadaan",
     "sourceUrl": "https://www.instagram.com/brajjancare/",
     "publishedAt": "2026-05-04T02:17:00Z",
     "title": "Food Distribution Drive",
@@ -11,15 +11,16 @@
     "url": "/images/site/media-food.svg",
     "alt": "Volunteers distributing meals in Vrindavan.",
     "tags": [
+      "dummy",
       "annadaan",
       "seva"
     ],
     "source": "generated-social"
   },
   {
-    "id": "instagram_seed_temple_1",
+    "id": "instagram_dummy_heritage_media_1",
     "provider": "instagram",
-    "providerPostId": "seed_temple",
+    "providerPostId": "dummy_heritage",
     "sourceUrl": "https://www.instagram.com/brajjancare/",
     "publishedAt": "2026-05-02T06:45:00Z",
     "title": "Temple Stonework",
@@ -28,6 +29,7 @@
     "url": "/images/site/media-temple.svg",
     "alt": "Temple stonework in Vrindavan.",
     "tags": [
+      "dummy",
       "heritage",
       "vrindavan"
     ],

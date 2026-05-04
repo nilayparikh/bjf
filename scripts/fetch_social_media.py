@@ -62,6 +62,109 @@ class GeneratedPayload(BaseModel):
     library: list[SocialLibraryRecord]
 
 
+def parse_int_env(name: str, default: int) -> int:
+    raw_value = os.getenv(name)
+    if raw_value is None:
+        return default
+
+    normalized = raw_value.strip()
+    if not normalized:
+        return default
+
+    try:
+        parsed = int(normalized)
+    except ValueError as error:
+        raise RuntimeError(f"Environment variable {name} must be an integer when set.") from error
+
+    return parsed
+
+
+def build_dummy_payload() -> GeneratedPayload:
+    return GeneratedPayload(
+        feed=[
+            SocialFeedRecord(
+                id="instagram_dummy_annadaan",
+                provider="instagram",
+                providerPostId="dummy_annadaan",
+                accountName=os.getenv("INSTAGRAM_ACCOUNT_NAME", "@brajjancare"),
+                url="https://www.instagram.com/brajjancare/",
+                publishedAt="2026-05-04T02:17:00Z",
+                title="Serving the Braj Community",
+                caption="Dummy social data is active because no social provider credentials were configured for this build.",
+                media=[
+                    SocialMedia(
+                        type="image",
+                        url="/images/site/media-food.svg",
+                        alt="Volunteers distributing meals in Vrindavan.",
+                    )
+                ],
+                tags=["dummy", "annadaan", "seva"],
+                metrics={"likes": 124, "shares": 18},
+            ),
+            SocialFeedRecord(
+                id="facebook_dummy_literacy",
+                provider="facebook",
+                providerPostId="dummy_literacy",
+                accountName=os.getenv("FACEBOOK_ACCOUNT_NAME", "Braj Jan Care Foundation"),
+                url="https://www.facebook.com/brajjancare/",
+                publishedAt="2026-05-03T11:00:00Z",
+                title="Village Learning Circle Begins",
+                caption="This generated fallback keeps the static build healthy when live social tokens are unavailable.",
+                media=[],
+                tags=["dummy", "education", "community"],
+                metrics={"likes": 86, "shares": 12},
+            ),
+            SocialFeedRecord(
+                id="instagram_dummy_heritage",
+                provider="instagram",
+                providerPostId="dummy_heritage",
+                accountName=os.getenv("INSTAGRAM_ACCOUNT_NAME", "@brajjancare"),
+                url="https://www.instagram.com/brajjancare/",
+                publishedAt="2026-05-02T06:45:00Z",
+                title="Heritage In Every Stone",
+                caption="Prototype-friendly fallback media keeps the gallery and social pages renderable in local and CI builds.",
+                media=[
+                    SocialMedia(
+                        type="image",
+                        url="/images/site/media-temple.svg",
+                        alt="Temple stonework in Vrindavan.",
+                    )
+                ],
+                tags=["dummy", "heritage", "vrindavan"],
+                metrics={"likes": 143, "shares": 21},
+            ),
+        ],
+        library=[
+            SocialLibraryRecord(
+                id="instagram_dummy_annadaan_media_1",
+                provider="instagram",
+                providerPostId="dummy_annadaan",
+                sourceUrl="https://www.instagram.com/brajjancare/",
+                publishedAt="2026-05-04T02:17:00Z",
+                title="Food Distribution Drive",
+                caption="Community meal service near the Yamuna ghats.",
+                kind="photo",
+                url="/images/site/media-food.svg",
+                alt="Volunteers distributing meals in Vrindavan.",
+                tags=["dummy", "annadaan", "seva"],
+            ),
+            SocialLibraryRecord(
+                id="instagram_dummy_heritage_media_1",
+                provider="instagram",
+                providerPostId="dummy_heritage",
+                sourceUrl="https://www.instagram.com/brajjancare/",
+                publishedAt="2026-05-02T06:45:00Z",
+                title="Temple Stonework",
+                caption="Heritage details from Vrindavan lanes.",
+                kind="photo",
+                url="/images/site/media-temple.svg",
+                alt="Temple stonework in Vrindavan.",
+                tags=["dummy", "heritage", "vrindavan"],
+            ),
+        ],
+    )
+
+
 def request_json(url: str, params: dict[str, Any], provider: Provider, operation: str) -> dict[str, Any]:
     for attempt in range(1, 4):
         response = requests.get(url, params=params, timeout=30)
@@ -279,12 +382,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Fetch public social media records into normalized static JSON.")
     parser.add_argument("--output", default="data/generated", help="Generated JSON output directory.")
     parser.add_argument("--provider", choices=["all", "facebook", "instagram"], default="all")
-    parser.add_argument("--limit", type=int, default=int(os.getenv("SOCIAL_FETCH_LIMIT", "50")))
+    parser.add_argument("--limit", type=int, default=parse_int_env("SOCIAL_FETCH_LIMIT", 50))
     parser.add_argument("--dry-run", action="store_true", help="Fetch and validate without writing output files.")
     parser.add_argument(
         "--use-existing-on-missing-credentials",
         action="store_true",
-        help="Validate existing generated JSON when provider credentials are not configured.",
+        help="Keep the build healthy when provider credentials are not configured.",
     )
     return parser.parse_args()
 
@@ -304,11 +407,26 @@ def main() -> None:
         payloads.append(normalize_facebook(fetch_facebook(args.limit)))
 
     if not payloads:
-        if args.use_existing_on_missing_credentials:
-            existing = load_existing(output)
-            print(f"No social credentials configured; validated existing generated JSON with {len(existing.feed)} feed records.")
+        payload = build_dummy_payload()
+
+        if args.dry_run:
+            print(
+                f"No social credentials configured; dummy fallback prepared with {len(payload.feed)} feed records and {len(payload.library)} media records."
+            )
             return
-        raise RuntimeError("No social provider credentials were configured.")
+
+        write_payload(output, payload)
+
+        if args.use_existing_on_missing_credentials:
+            print(
+                f"No social credentials configured; wrote dummy social JSON with {len(payload.feed)} feed records and {len(payload.library)} media records."
+            )
+            return
+
+        print(
+            f"No social credentials configured; wrote dummy social JSON with {len(payload.feed)} feed records and {len(payload.library)} media records."
+        )
+        return
 
     payload = merge_payloads(payloads)
 
