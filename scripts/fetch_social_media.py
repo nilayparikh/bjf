@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field, HttpUrl, ValidationError  # type: ignore[
 try:
     from dotenv import load_dotenv  # type: ignore[import-not-found]
 except ImportError:  # pragma: no cover - dependency is installed in normal runs
+
     def load_dotenv() -> None:
         return None
 
@@ -74,7 +75,9 @@ def parse_int_env(name: str, default: int) -> int:
     try:
         parsed = int(normalized)
     except ValueError as error:
-        raise RuntimeError(f"Environment variable {name} must be an integer when set.") from error
+        raise RuntimeError(
+            f"Environment variable {name} must be an integer when set."
+        ) from error
 
     return parsed
 
@@ -105,7 +108,9 @@ def build_dummy_payload() -> GeneratedPayload:
                 id="facebook_dummy_literacy",
                 provider="facebook",
                 providerPostId="dummy_literacy",
-                accountName=os.getenv("FACEBOOK_ACCOUNT_NAME", "Braj Jan Care Foundation"),
+                accountName=os.getenv(
+                    "FACEBOOK_ACCOUNT_NAME", "Braj Jan Care Foundation"
+                ),
                 url="https://www.facebook.com/brajjancare/",
                 publishedAt="2026-05-03T11:00:00Z",
                 title="Village Learning Circle Begins",
@@ -165,14 +170,18 @@ def build_dummy_payload() -> GeneratedPayload:
     )
 
 
-def request_json(url: str, params: dict[str, Any], provider: Provider, operation: str) -> dict[str, Any]:
+def request_json(
+    url: str, params: dict[str, Any], provider: Provider, operation: str
+) -> dict[str, Any]:
     for attempt in range(1, 4):
         response = requests.get(url, params=params, timeout=30)
         if response.status_code in {429, 500, 502, 503, 504} and attempt < 3:
             time.sleep(2 * attempt)
             continue
         if response.status_code >= 400:
-            raise RuntimeError(f"{provider} {operation} failed with HTTP {response.status_code}.")
+            raise RuntimeError(
+                f"{provider} {operation} failed with HTTP {response.status_code}."
+            )
         return response.json()
     raise RuntimeError(f"{provider} {operation} failed after retries.")
 
@@ -237,14 +246,24 @@ def normalize_instagram(records: list[dict[str, Any]]) -> GeneratedPayload:
     for record in records:
         media_type = str(record.get("media_type", "IMAGE")).lower()
         kind = "video" if media_type == "video" else "photo"
-        media_url = record.get("thumbnail_url") if kind == "video" else record.get("media_url")
-        caption = record.get("caption") or "Instagram update from Braj Jan Care Foundation."
+        media_url = (
+            record.get("thumbnail_url") if kind == "video" else record.get("media_url")
+        )
+        caption = (
+            record.get("caption") or "Instagram update from Braj Jan Care Foundation."
+        )
         permalink = record.get("permalink") or "https://www.instagram.com/brajjancare/"
         provider_post_id = str(record.get("id"))
         title = title_from_caption(caption, "Instagram Seva Update")
         media = []
         if media_url:
-            media.append(SocialMedia(type="video" if kind == "video" else "image", url=media_url, alt=title))
+            media.append(
+                SocialMedia(
+                    type="video" if kind == "video" else "image",
+                    url=media_url,
+                    alt=title,
+                )
+            )
 
         feed.append(
             SocialFeedRecord(
@@ -299,19 +318,33 @@ def normalize_facebook(records: list[dict[str, Any]]) -> GeneratedPayload:
 
     for record in records:
         provider_post_id = str(record.get("id"))
-        caption = record.get("message") or "Facebook update from Braj Jan Care Foundation."
-        permalink = record.get("permalink_url") or "https://www.facebook.com/brajjancare/"
+        caption = (
+            record.get("message") or "Facebook update from Braj Jan Care Foundation."
+        )
+        permalink = (
+            record.get("permalink_url") or "https://www.facebook.com/brajjancare/"
+        )
         published_at = record.get("created_time")
         title = title_from_caption(caption, "Facebook Seva Update")
         media_items: list[SocialMedia] = []
 
-        for index, attachment in enumerate(flatten_facebook_attachments(record), start=1):
-            media_url = attachment.get("media", {}).get("image", {}).get("src") or attachment.get("url")
+        for index, attachment in enumerate(
+            flatten_facebook_attachments(record), start=1
+        ):
+            media_url = attachment.get("media", {}).get("image", {}).get(
+                "src"
+            ) or attachment.get("url")
             if not media_url:
                 continue
             media_type = str(attachment.get("media_type", "photo")).lower()
             kind = "video" if "video" in media_type else "photo"
-            media_items.append(SocialMedia(type="video" if kind == "video" else "image", url=media_url, alt=title))
+            media_items.append(
+                SocialMedia(
+                    type="video" if kind == "video" else "image",
+                    url=media_url,
+                    alt=title,
+                )
+            )
             library.append(
                 SocialLibraryRecord(
                     id=f"facebook_{provider_post_id}_media_{index}",
@@ -333,7 +366,9 @@ def normalize_facebook(records: list[dict[str, Any]]) -> GeneratedPayload:
                 id=f"facebook_{provider_post_id}",
                 provider="facebook",
                 providerPostId=provider_post_id,
-                accountName=os.getenv("FACEBOOK_ACCOUNT_NAME", "Braj Jan Care Foundation"),
+                accountName=os.getenv(
+                    "FACEBOOK_ACCOUNT_NAME", "Braj Jan Care Foundation"
+                ),
                 url=permalink,
                 publishedAt=published_at,
                 title=title,
@@ -358,32 +393,58 @@ def load_existing(output: Path) -> GeneratedPayload:
     feed_path = output / "social-feed.json"
     library_path = output / "social-library.json"
     if not feed_path.exists() or not library_path.exists():
-        raise RuntimeError("Missing generated social JSON and no provider credentials were configured.")
+        raise RuntimeError(
+            "Missing generated social JSON and no provider credentials were configured."
+        )
 
     return GeneratedPayload(
-        feed=[SocialFeedRecord.model_validate(item) for item in json.loads(feed_path.read_text(encoding="utf-8"))],
-        library=[SocialLibraryRecord.model_validate(item) for item in json.loads(library_path.read_text(encoding="utf-8"))],
+        feed=[
+            SocialFeedRecord.model_validate(item)
+            for item in json.loads(feed_path.read_text(encoding="utf-8"))
+        ],
+        library=[
+            SocialLibraryRecord.model_validate(item)
+            for item in json.loads(library_path.read_text(encoding="utf-8"))
+        ],
     )
 
 
 def write_payload(output: Path, payload: GeneratedPayload) -> None:
     output.mkdir(parents=True, exist_ok=True)
     (output / "social-feed.json").write_text(
-        json.dumps([record.model_dump(mode="json") for record in payload.feed], indent=2) + "\n",
+        json.dumps(
+            [record.model_dump(mode="json") for record in payload.feed], indent=2
+        )
+        + "\n",
         encoding="utf-8",
     )
     (output / "social-library.json").write_text(
-        json.dumps([record.model_dump(mode="json") for record in payload.library], indent=2) + "\n",
+        json.dumps(
+            [record.model_dump(mode="json") for record in payload.library], indent=2
+        )
+        + "\n",
         encoding="utf-8",
     )
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Fetch public social media records into normalized static JSON.")
-    parser.add_argument("--output", default="data/generated", help="Generated JSON output directory.")
-    parser.add_argument("--provider", choices=["all", "facebook", "instagram"], default="all")
-    parser.add_argument("--limit", type=int, default=parse_int_env("SOCIAL_FETCH_LIMIT", 50))
-    parser.add_argument("--dry-run", action="store_true", help="Fetch and validate without writing output files.")
+    parser = argparse.ArgumentParser(
+        description="Fetch public social media records into normalized static JSON."
+    )
+    parser.add_argument(
+        "--output", default="data/generated", help="Generated JSON output directory."
+    )
+    parser.add_argument(
+        "--provider", choices=["all", "facebook", "instagram"], default="all"
+    )
+    parser.add_argument(
+        "--limit", type=int, default=parse_int_env("SOCIAL_FETCH_LIMIT", 50)
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Fetch and validate without writing output files.",
+    )
     parser.add_argument(
         "--use-existing-on-missing-credentials",
         action="store_true",
@@ -398,8 +459,14 @@ def main() -> None:
     output = Path(args.output)
     payloads: list[GeneratedPayload] = []
 
-    instagram_enabled = args.provider in {"all", "instagram"} and os.getenv("INSTAGRAM_ACCESS_TOKEN")
-    facebook_enabled = args.provider in {"all", "facebook"} and os.getenv("FACEBOOK_ACCESS_TOKEN") and os.getenv("FACEBOOK_PAGE_ID")
+    instagram_enabled = args.provider in {"all", "instagram"} and os.getenv(
+        "INSTAGRAM_ACCESS_TOKEN"
+    )
+    facebook_enabled = (
+        args.provider in {"all", "facebook"}
+        and os.getenv("FACEBOOK_ACCESS_TOKEN")
+        and os.getenv("FACEBOOK_PAGE_ID")
+    )
 
     if instagram_enabled:
         payloads.append(normalize_instagram(fetch_instagram(args.limit)))
@@ -431,11 +498,15 @@ def main() -> None:
     payload = merge_payloads(payloads)
 
     if args.dry_run:
-        print(f"Dry run succeeded with {len(payload.feed)} feed records and {len(payload.library)} media records.")
+        print(
+            f"Dry run succeeded with {len(payload.feed)} feed records and {len(payload.library)} media records."
+        )
         return
 
     write_payload(output, payload)
-    print(f"Wrote {len(payload.feed)} feed records and {len(payload.library)} media records to {output}.")
+    print(
+        f"Wrote {len(payload.feed)} feed records and {len(payload.library)} media records to {output}."
+    )
 
 
 if __name__ == "__main__":
