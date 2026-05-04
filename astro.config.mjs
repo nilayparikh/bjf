@@ -6,7 +6,9 @@ function normalizeBase(value) {
   }
 
   const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
-  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+  return withLeadingSlash.endsWith("/")
+    ? withLeadingSlash
+    : `${withLeadingSlash}/`;
 }
 
 function getGitHubPagesDefaults() {
@@ -23,7 +25,8 @@ function getGitHubPagesDefaults() {
   }
 
   const userSiteRepository = `${owner.toLowerCase()}.github.io`;
-  const isUserSiteRepository = repositoryName.toLowerCase() === userSiteRepository;
+  const isUserSiteRepository =
+    repositoryName.toLowerCase() === userSiteRepository;
 
   return {
     site: `https://${owner}.github.io`,
@@ -32,8 +35,13 @@ function getGitHubPagesDefaults() {
 }
 
 const githubPagesDefaults = getGitHubPagesDefaults();
-const site = process.env.SITE_URL ?? githubPagesDefaults?.site ?? "https://example.github.io";
-const base = normalizeBase(process.env.BASE_PATH ?? githubPagesDefaults?.base ?? "/");
+const site =
+  process.env.SITE_URL ??
+  githubPagesDefaults?.site ??
+  "https://example.github.io";
+const base = normalizeBase(
+  process.env.BASE_PATH ?? githubPagesDefaults?.base ?? "/",
+);
 
 export default defineConfig({
   site,
