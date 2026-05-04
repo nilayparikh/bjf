@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Footer from '../components/ui/Footer.astro';
 import TopNav from '../components/ui/TopNav.astro';
 import { site } from '../lib/data';
+import { withBase } from '../lib/urls';
 
 interface Props {
   title?: string;
@@ -19,7 +20,8 @@ const {
 } = Astro.props;
 
 const pageTitle = title === site.name ? title : `${title} | ${site.shortName}`;
-const canonicalUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? site.baseUrl).toString();
+const socialImageUrl = image ? new URL(withBase(image) ?? image, Astro.site ?? site.baseUrl).toString() : undefined;
 ---
 
 <!doctype html>
@@ -33,7 +35,7 @@ const canonicalUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    {image && <meta property="og:image" content={image} />}
+    {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet" />
