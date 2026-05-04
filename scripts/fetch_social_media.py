@@ -82,6 +82,15 @@ def parse_int_env(name: str, default: int) -> int:
     return parsed
 
 
+def get_env_or_default(name: str, default: str) -> str:
+    raw_value = os.getenv(name)
+    if raw_value is None:
+        return default
+
+    normalized = raw_value.strip()
+    return normalized or default
+
+
 def build_dummy_payload() -> GeneratedPayload:
     return GeneratedPayload(
         feed=[
@@ -89,7 +98,9 @@ def build_dummy_payload() -> GeneratedPayload:
                 id="instagram_dummy_annadaan",
                 provider="instagram",
                 providerPostId="dummy_annadaan",
-                accountName=os.getenv("INSTAGRAM_ACCOUNT_NAME", "@brajjancare"),
+                accountName=get_env_or_default(
+                    "INSTAGRAM_ACCOUNT_NAME", "@brajjancare"
+                ),
                 url="https://www.instagram.com/brajjancare/",
                 publishedAt="2026-05-04T02:17:00Z",
                 title="Serving the Braj Community",
@@ -108,7 +119,7 @@ def build_dummy_payload() -> GeneratedPayload:
                 id="facebook_dummy_literacy",
                 provider="facebook",
                 providerPostId="dummy_literacy",
-                accountName=os.getenv(
+                accountName=get_env_or_default(
                     "FACEBOOK_ACCOUNT_NAME", "Braj Jan Care Foundation"
                 ),
                 url="https://www.facebook.com/brajjancare/",
@@ -123,7 +134,9 @@ def build_dummy_payload() -> GeneratedPayload:
                 id="instagram_dummy_heritage",
                 provider="instagram",
                 providerPostId="dummy_heritage",
-                accountName=os.getenv("INSTAGRAM_ACCOUNT_NAME", "@brajjancare"),
+                accountName=get_env_or_default(
+                    "INSTAGRAM_ACCOUNT_NAME", "@brajjancare"
+                ),
                 url="https://www.instagram.com/brajjancare/",
                 publishedAt="2026-05-02T06:45:00Z",
                 title="Heritage In Every Stone",
@@ -270,7 +283,9 @@ def normalize_instagram(records: list[dict[str, Any]]) -> GeneratedPayload:
                 id=f"instagram_{provider_post_id}",
                 provider="instagram",
                 providerPostId=provider_post_id,
-                accountName=os.getenv("INSTAGRAM_ACCOUNT_NAME", "@brajjancare"),
+                accountName=get_env_or_default(
+                    "INSTAGRAM_ACCOUNT_NAME", "@brajjancare"
+                ),
                 url=permalink,
                 publishedAt=record.get("timestamp"),
                 title=title,
@@ -366,7 +381,7 @@ def normalize_facebook(records: list[dict[str, Any]]) -> GeneratedPayload:
                 id=f"facebook_{provider_post_id}",
                 provider="facebook",
                 providerPostId=provider_post_id,
-                accountName=os.getenv(
+                accountName=get_env_or_default(
                     "FACEBOOK_ACCOUNT_NAME", "Braj Jan Care Foundation"
                 ),
                 url=permalink,
