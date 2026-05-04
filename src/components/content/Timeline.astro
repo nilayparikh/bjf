@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../../lib/content';
+import Card from '../ui/Card.astro';
+import Chip from '../ui/Chip.astro';
+import ImageFrame from '../ui/ImageFrame.astro';
+
+interface Props {
+  groups: Record<string, CollectionEntry<'dailyUpdates'>[]>;
+}
+
+const { groups } = Astro.props;
+const dates = Object.keys(groups).sort((left, right) => right.localeCompare(left));
+---
+
+<div class="relative mx-auto max-w-5xl">
+  <div class="absolute left-5 top-0 hidden h-full w-px bg-outline-variant md:left-1/2 md:block"></div>
+  {dates.map((date) => (
+    <section class="relative mb-xl">
+      <div class="sticky top-24 z-10 mb-lg flex justify-start md:justify-center">
+        <Chip tone="cream">{formatDate(date)}</Chip>
+      </div>
+      <div class="space-y-lg">
+        {groups[date].map((update, index) => {
+          const reversed = index % 2 === 1;
+          return (
+            <article class:list={['relative grid gap-md md:grid-cols-2 md:items-center', reversed && 'md:[&>*:first-child]:order-2']}>
+              <Card class:list={[reversed ? 'md:text-left' : 'md:text-right']}>
+                <div class:list={['mb-sm flex items-center gap-2 text-primary', !reversed && 'md:justify-end']}>
+                  <span class="material-symbols-outlined" aria-hidden="true">{update.data.icon}</span>
+                  <span class="font-label-md text-label-md">{update.data.category}</span>
+                </div>
+                <h2 class="font-headline-sm text-headline-sm text-primary">{update.data.title}</h2>
+                <p class="mt-sm font-body-md text-body-md text-on-surface-variant">{update.data.summary}</p>
+                <p class="mt-sm inline-flex items-center gap-1 font-label-md text-label-md text-on-surface-variant">
+                  <span class="material-symbols-outlined text-base" aria-hidden="true">place</span>
+                  {update.data.location}
+                </p>
+              </Card>
+              <div class="relative">
+                <span class="absolute -left-[1.82rem] top-1/2 hidden h-3 w-3 -translate-y-1/2 rounded-full border-4 border-background bg-primary md:block"></span>
+                <ImageFrame src={update.data.image} alt={update.data.imageAlt} aspect="wide" />
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  ))}
+</div>

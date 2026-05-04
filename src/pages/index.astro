@@ -1,0 +1,64 @@
+---
+import { render } from 'astro:content';
+import Hero from '../components/content/Hero.astro';
+import ProjectCard from '../components/content/ProjectCard.astro';
+import Card from '../components/ui/Card.astro';
+import Chip from '../components/ui/Chip.astro';
+import ImageFrame from '../components/ui/ImageFrame.astro';
+import Section from '../components/ui/Section.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageByTemplate, getSortedProjects } from '../lib/content';
+
+const page = await getPageByTemplate('home');
+const { Content } = await render(page);
+const projects = (await getSortedProjects()).slice(0, 3);
+---
+
+<BaseLayout title={page.data.seo.title} description={page.data.seo.description} activePath="/" image={page.data.heroImage}>
+  <Hero
+    title={page.data.title}
+    summary={page.data.summary}
+    eyebrow={page.data.eyebrow}
+    image={page.data.heroImage}
+    imageAlt={page.data.heroAlt}
+    primaryCta={page.data.primaryCta}
+    secondaryCta={page.data.secondaryCta}
+  />
+  <Section>
+    <div class="grid gap-xl md:grid-cols-2 md:items-center">
+      <div class="space-y-md">
+        {page.data.mission && <Chip icon={page.data.mission.icon} tone="cream">{page.data.mission.eyebrow}</Chip>}
+        <h2 class="font-headline-md text-headline-md text-primary">{page.data.mission?.title}</h2>
+        <div class="content-rhythm font-body-md text-body-md text-on-surface-variant">
+          <Content />
+        </div>
+      </div>
+      {page.data.mission && <ImageFrame src={page.data.mission.image} alt={page.data.mission.imageAlt} aspect="wide" />}
+    </div>
+  </Section>
+  <div class="flex justify-center py-md opacity-40" aria-hidden="true">
+    <span class="material-symbols-outlined text-primary">spa</span>
+  </div>
+  <Section tone="muted">
+    <div class="mb-lg text-center">
+      <h2 class="font-headline-md text-headline-md text-primary">Ongoing Seva Projects</h2>
+      <p class="mx-auto mt-sm max-w-2xl font-body-md text-body-md text-on-surface-variant">Focused initiatives that turn daily support into visible care across Braj.</p>
+    </div>
+    <div class="grid gap-gutter md:grid-cols-3">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </Section>
+  <Section>
+    <div class="grid gap-gutter md:grid-cols-3">
+      <Card tone="rich" padding="lg" class="md:col-span-2">
+        <p class="font-label-md text-label-md uppercase text-primary-fixed-dim">Daily rhythm</p>
+        <h2 class="mt-sm font-headline-md text-headline-md">Small acts, steady care</h2>
+        <p class="mt-sm max-w-2xl font-body-lg text-body-lg text-inverse-on-surface">Meals, cleanups, medical camps, and education support are planned as repeatable work so contributors can see where support goes.</p>
+      </Card>
+      <Card padding="lg">
+        <p class="font-label-md text-label-md uppercase text-on-surface-variant">Built for trust</p>
+        <p class="mt-sm font-headline-sm text-headline-sm text-primary">Content-backed pages, validated data, and static generation keep the site simple to maintain.</p>
+      </Card>
+    </div>
+  </Section>
+</BaseLayout>

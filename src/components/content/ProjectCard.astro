@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from '../ui/Button.astro';
+import Card from '../ui/Card.astro';
+import Chip from '../ui/Chip.astro';
+import ImageFrame from '../ui/ImageFrame.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const statusTone = project.data.status === 'completed' ? 'outline' : 'cream';
+---
+
+<Card class="flex h-full flex-col overflow-hidden p-0">
+  <ImageFrame src={project.data.image} alt={project.data.imageAlt} aspect="wide" class="rounded-none border-0 shadow-none" />
+  <div class="flex flex-1 flex-col p-md">
+    <div class="mb-sm flex flex-wrap items-center gap-2">
+      <Chip tone={statusTone}>{project.data.status}</Chip>
+      {project.data.tags.slice(0, 2).map((tag) => <Chip tone="outline">{tag}</Chip>)}
+    </div>
+    <div class="mb-sm flex items-center gap-2 font-body-md text-body-md text-on-surface-variant">
+      <span class="material-symbols-outlined text-base" aria-hidden="true">location_on</span>
+      <span>{project.data.location}</span>
+    </div>
+    <h2 class="font-headline-sm text-headline-sm text-primary">{project.data.title}</h2>
+    <p class="mt-sm flex-1 font-body-md text-body-md text-on-surface-variant">{project.data.summary}</p>
+    {typeof project.data.progress === 'number' && (
+      <div class="mt-md" aria-label={`${project.data.progress}% progress`}>
+        <div class="h-2 overflow-hidden rounded-full bg-surface-variant">
+          <div class="h-full rounded-full bg-primary" style={`width: ${project.data.progress}%`}></div>
+        </div>
+      </div>
+    )}
+    <Button href={project.data.ctaHref} variant={project.data.ctaHref === '/donate/' ? 'donation' : 'ghost'} class="mt-md w-full">
+      {project.data.ctaLabel}
+    </Button>
+  </div>
+</Card>

@@ -1,0 +1,41 @@
+---
+import { render } from 'astro:content';
+import PageHeader from '../../components/content/PageHeader.astro';
+import Card from '../../components/ui/Card.astro';
+import Section from '../../components/ui/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByTemplate } from '../../lib/content';
+import { site } from '../../lib/data';
+
+const page = await getPageByTemplate('contact');
+const { Content } = await render(page);
+---
+
+<BaseLayout title={page.data.seo.title} description={page.data.seo.description} activePath="/contact/" image={page.data.heroImage}>
+  <PageHeader title={page.data.title} summary={page.data.summary} eyebrow="Contact" />
+  <Section>
+    <div class="grid gap-gutter md:grid-cols-[1fr_1fr]">
+      <Card padding="lg">
+        <div class="content-rhythm font-body-lg text-body-lg text-on-surface-variant">
+          <Content />
+        </div>
+      </Card>
+      <Card padding="lg" tone="muted">
+        <h2 class="font-headline-md text-headline-md text-primary">Reach Us</h2>
+        <div class="mt-md grid gap-md font-body-md text-body-md text-on-surface-variant">
+          <p class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary" aria-hidden="true">mail</span><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>
+          <p class="flex items-center gap-sm"><span class="material-symbols-outlined text-primary" aria-hidden="true">call</span><a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a></p>
+          <p class="flex items-start gap-sm"><span class="material-symbols-outlined text-primary" aria-hidden="true">place</span>{site.address}</p>
+        </div>
+        <div class="mt-lg flex flex-wrap gap-sm">
+          {site.socialLinks.map((link) => (
+            <a href={link.href} class="inline-flex items-center gap-2 rounded-full border border-outline-variant px-4 py-2 font-label-md text-label-md text-primary hover:bg-primary-fixed">
+              <span class="material-symbols-outlined" aria-hidden="true">{link.icon}</span>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </Card>
+    </div>
+  </Section>
+</BaseLayout>

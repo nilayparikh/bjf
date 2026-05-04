@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Flower prayer</title>
+  <desc id="desc">Hands holding marigold flowers in prayer.</desc>
+  <rect width="1200" height="900" fill="#f9f9f9"/>
+  <circle cx="620" cy="350" r="210" fill="#ffdad5"/>
+  <g fill="#fd5d4c"><circle cx="560" cy="310" r="60"/><circle cx="650" cy="310" r="60"/><circle cx="605" cy="395" r="60"/></g>
+  <path d="M290 690 C420 520 535 510 600 650" fill="none" stroke="#293041" stroke-width="52" stroke-linecap="round" opacity="0.72"/>
+  <path d="M910 690 C780 520 665 510 600 650" fill="none" stroke="#b4281e" stroke-width="52" stroke-linecap="round" opacity="0.72"/>
+</svg>

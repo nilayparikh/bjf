@@ -1,0 +1,74 @@
+[
+  {
+    "id": "yamuna-aarti-dawn",
+    "title": "Yamuna Aarti at Dawn",
+    "summary": "Morning prayers on the riverbank as volunteers prepare for daily seva.",
+    "kind": "photo",
+    "category": "Morning Seva",
+    "src": "/images/site/media-aarti.svg",
+    "alt": "Soft dawn light over Yamuna aarti and prayer lamps.",
+    "featured": true,
+    "span": "wide-tall",
+    "source": "curated"
+  },
+  {
+    "id": "gaushala-feeding",
+    "title": "Gaushala Care",
+    "summary": "Daily fodder and care for rescued cows in Braj.",
+    "kind": "photo",
+    "category": "Gau Seva",
+    "src": "/images/site/media-cows.svg",
+    "alt": "Volunteers feeding cows in a calm gaushala courtyard.",
+    "featured": false,
+    "span": "standard",
+    "source": "curated"
+  },
+  {
+    "id": "temple-carving",
+    "title": "Temple Details",
+    "summary": "Stonework and sacred architecture from Vrindavan lanes.",
+    "kind": "photo",
+    "category": "Heritage",
+    "src": "/images/site/media-temple.svg",
+    "alt": "Detailed temple carving in warm sandstone tones.",
+    "featured": false,
+    "span": "standard",
+    "source": "curated"
+  },
+  {
+    "id": "prasad-distribution-video",
+    "title": "Prasad Distribution 2026",
+    "summary": "A short visual record of community meal service.",
+    "kind": "video",
+    "category": "Annadaan",
+    "src": "/images/site/media-food.svg",
+    "alt": "Volunteers distributing warm meals in a sunlit courtyard.",
+    "featured": false,
+    "span": "wide",
+    "source": "curated"
+  },
+  {
+    "id": "braj-wildlife",
+    "title": "Braj Wildlife",
+    "summary": "A peacock resting in a garden near Vrindavan.",
+    "kind": "photo",
+    "category": "Nature",
+    "src": "/images/site/media-peacock.svg",
+    "alt": "Peacock feathers against a quiet garden background.",
+    "featured": false,
+    "span": "tall",
+    "source": "curated"
+  },
+  {
+    "id": "flower-prayer",
+    "title": "Offering Flowers",
+    "summary": "Marigold flowers held in prayer before morning service.",
+    "kind": "photo",
+    "category": "Devotion",
+    "src": "/images/site/media-prayer.svg",
+    "alt": "Hands holding marigold flowers in soft morning light.",
+    "featured": false,
+    "span": "standard",
+    "source": "curated"
+  }
+]

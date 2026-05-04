@@ -1,0 +1,19 @@
+---
+import PageHeader from '../../components/content/PageHeader.astro';
+import ProjectCard from '../../components/content/ProjectCard.astro';
+import Section from '../../components/ui/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByTemplate, getSortedProjects } from '../../lib/content';
+
+const page = await getPageByTemplate('projects');
+const projects = await getSortedProjects();
+---
+
+<BaseLayout title={page.data.seo.title} description={page.data.seo.description} activePath="/projects/" image={page.data.heroImage}>
+  <PageHeader title={page.data.title} summary={page.data.summary} eyebrow="Seva Projects" />
+  <Section>
+    <div class="grid gap-gutter md:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </Section>
+</BaseLayout>

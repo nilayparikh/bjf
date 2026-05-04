@@ -1,0 +1,40 @@
+---
+interface Props {
+  tone?: 'default' | 'muted' | 'none';
+  spacing?: 'md' | 'lg' | 'xl';
+  width?: 'container' | 'narrow';
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const {
+  tone = 'default',
+  spacing = 'xl',
+  width = 'container',
+  align = 'left',
+  class: className,
+} = Astro.props;
+
+const tones = {
+  default: 'bg-background',
+  muted: 'bg-surface-container-low',
+  none: '',
+};
+
+const spaces = {
+  md: 'py-md',
+  lg: 'py-lg',
+  xl: 'py-xl',
+};
+
+const widths = {
+  container: 'max-w-container-max',
+  narrow: 'max-w-4xl',
+};
+---
+
+<section class:list={[tones[tone], spaces[spacing], className]}>
+  <div class:list={['mx-auto w-full px-gutter', widths[width], align === 'center' && 'text-center']}>
+    <slot />
+  </div>
+</section>

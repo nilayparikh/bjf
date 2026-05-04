@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Gaushala feeding</title>
+  <desc id="desc">Volunteers caring for cows in a gaushala courtyard.</desc>
+  <rect width="1200" height="900" fill="#f4efe6"/>
+  <rect y="560" width="1200" height="340" fill="#cac6be"/>
+  <ellipse cx="450" cy="570" rx="230" ry="115" fill="#ffffff" stroke="#293041" stroke-width="10" opacity="0.95"/>
+  <ellipse cx="760" cy="580" rx="210" ry="105" fill="#fff8ec" stroke="#293041" stroke-width="10" opacity="0.95"/>
+  <g fill="#293041"><circle cx="355" cy="540" r="14"/><circle cx="520" cy="540" r="14"/><circle cx="690" cy="555" r="14"/><circle cx="825" cy="555" r="14"/></g>
+  <path d="M335 680 v95 M540 680 v95 M690 680 v95 M845 680 v95" stroke="#293041" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="975" cy="350" r="55" fill="#fd5d4c"/><rect x="920" y="405" width="110" height="185" rx="44" fill="#293041" opacity="0.75"/>
+</svg>

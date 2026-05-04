@@ -1,0 +1,25 @@
+---
+import PageHeader from '../../components/content/PageHeader.astro';
+import SocialFeedCard from '../../components/content/SocialFeedCard.astro';
+import Chip from '../../components/ui/Chip.astro';
+import Section from '../../components/ui/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByTemplate } from '../../lib/content';
+import { socialFeed } from '../../lib/data';
+
+const page = await getPageByTemplate('social');
+---
+
+<BaseLayout title={page.data.seo.title} description={page.data.seo.description} activePath="/social/" image={page.data.heroImage}>
+  <PageHeader title={page.data.title} summary={page.data.summary} eyebrow="Generated Social Feed" action={page.data.primaryCta} />
+  <Section>
+    <div class="mb-lg flex flex-wrap gap-sm border-b border-surface-variant pb-sm">
+      <Chip tone="primary">All Feeds</Chip>
+      <Chip tone="outline" icon="photo_camera">Instagram</Chip>
+      <Chip tone="outline" icon="forum">Facebook</Chip>
+    </div>
+    <div class="grid gap-gutter md:grid-cols-2 lg:grid-cols-3">
+      {socialFeed.map((post) => <SocialFeedCard post={post} />)}
+    </div>
+  </Section>
+</BaseLayout>

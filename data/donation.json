@@ -1,0 +1,62 @@
+{
+  "methods": [
+    {
+      "type": "bank-transfer",
+      "title": "Direct Bank Transfer",
+      "description": "Use these details to transfer your donation directly to the foundation account.",
+      "details": [
+        {
+          "label": "Account Name",
+          "value": "Braj Jan Care Foundation"
+        },
+        {
+          "label": "Account Number",
+          "value": "9876543210001234",
+          "format": "monospace"
+        },
+        {
+          "label": "Bank Name",
+          "value": "State Bank of India"
+        },
+        {
+          "label": "IFSC Code",
+          "value": "SBIN0001234",
+          "format": "monospace"
+        },
+        {
+          "label": "Branch",
+          "value": "Vrindavan Main Branch, Mathura"
+        }
+      ]
+    }
+  ],
+  "instructions": {
+    "title": "Important Instructions",
+    "icon": "info",
+    "body": "After initiating the transfer, please email the transaction reference number with your full name and contact details so we can issue your receipt."
+  },
+  "notices": [
+    {
+      "title": "Payment Methods",
+      "icon": "warning",
+      "tone": "warning",
+      "body": "We currently do not accept PayPal, credit cards, or third-party payment gateways. This keeps processing simple and transparent."
+    }
+  ],
+  "impact": [
+    {
+      "icon": "local_dining",
+      "body": "Providing pure meals to sadhus, widows, and vulnerable residents."
+    },
+    {
+      "icon": "healing",
+      "body": "Supporting medical camps and urgent care for local families."
+    },
+    {
+      "icon": "auto_awesome",
+      "body": "Maintaining the cleanliness and spiritual sanctity of Yamuna ghats."
+    }
+  ],
+  "image": "/images/site/donate-vrindavan.svg",
+  "imageAlt": "Warm light through temple arches in Vrindavan."
+}

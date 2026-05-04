@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Medical camp</title>
+  <desc id="desc">A rural medical camp with volunteers and patients.</desc>
+  <rect width="1200" height="900" fill="#f9f9f9"/>
+  <rect x="120" y="170" width="960" height="560" rx="42" fill="#ffffff" stroke="#c6c6cd" stroke-width="8"/>
+  <path d="M120 295 h960" stroke="#e2e2e2" stroke-width="8"/>
+  <rect x="520" y="220" width="160" height="56" rx="16" fill="#ffdad5"/>
+  <path d="M600 232 v32 M584 248 h32" stroke="#b4281e" stroke-width="14" stroke-linecap="round"/>
+  <g fill="#293041" opacity="0.76"><rect x="260" y="430" width="130" height="200" rx="52"/><rect x="800" y="430" width="130" height="200" rx="52"/></g>
+  <g fill="#fd5d4c"><circle cx="325" cy="390" r="46"/><circle cx="865" cy="390" r="46"/></g>
+  <rect x="460" y="475" width="280" height="120" rx="26" fill="#e7e2d9"/>
+  <path d="M500 535 h200" stroke="#141b2b" stroke-width="14" stroke-linecap="round" opacity="0.45"/>
+</svg>

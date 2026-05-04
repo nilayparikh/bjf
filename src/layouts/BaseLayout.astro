@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+import Footer from '../components/ui/Footer.astro';
+import TopNav from '../components/ui/TopNav.astro';
+import { site } from '../lib/data';
+
+interface Props {
+  title?: string;
+  description?: string;
+  activePath?: string;
+  image?: string;
+}
+
+const {
+  title = site.seo.title,
+  description = site.seo.description,
+  activePath = Astro.url.pathname,
+  image,
+} = Astro.props;
+
+const pageTitle = title === site.name ? title : `${title} | ${site.shortName}`;
+const canonicalUrl = new URL(Astro.url.pathname, site.baseUrl).toString();
+---
+
+<!doctype html>
+<html lang={site.defaultLocale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {image && <meta property="og:image" content={image} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-background text-on-background antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <a class="skip-link rounded-full bg-primary px-4 py-2 font-label-md text-label-md text-on-primary" href="#main-content">Skip to content</a>
+    <TopNav activePath={activePath} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

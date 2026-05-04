@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Yamuna cleanup</title>
+  <desc id="desc">Youth volunteers cleaning debris from the Yamuna riverbank.</desc>
+  <rect width="1200" height="900" fill="#eef3f7"/>
+  <path d="M0 510 C210 450 390 545 600 500 C820 455 980 520 1200 470 L1200 900 L0 900 Z" fill="#dbe2f9"/>
+  <path d="M0 650 C260 600 450 710 720 650 C930 600 1060 650 1200 620 L1200 900 L0 900 Z" fill="#293041" opacity="0.2"/>
+  <g stroke="#141b2b" stroke-width="26" stroke-linecap="round" opacity="0.72"><path d="M335 320 l-60 245"/><path d="M735 330 l70 240"/></g>
+  <g fill="#b4281e"><circle cx="350" cy="285" r="48"/><circle cx="720" cy="292" r="48"/></g>
+  <path d="M290 455 C370 430 445 460 500 520" fill="none" stroke="#fd5d4c" stroke-width="24" stroke-linecap="round"/>
+  <path d="M785 465 C710 430 630 465 575 525" fill="none" stroke="#fd5d4c" stroke-width="24" stroke-linecap="round"/>
+  <g fill="#ffffff" stroke="#76777d" stroke-width="5"><rect x="475" y="610" width="70" height="45" rx="8"/><rect x="650" y="635" width="80" height="40" rx="8"/><rect x="560" y="700" width="95" height="35" rx="8"/></g>
+</svg>

@@ -1,0 +1,86 @@
+---
+import { site } from '../../lib/data';
+import Card from '../ui/Card.astro';
+import ImageFrame from '../ui/ImageFrame.astro';
+
+interface Detail {
+  label: string;
+  value: string;
+  format?: string;
+}
+
+interface Method {
+  type: string;
+  title: string;
+  description: string;
+  details: Detail[];
+}
+
+interface Props {
+  donation: {
+    methods: Method[];
+    instructions: { title: string; icon: string; body: string };
+    notices: { title: string; icon: string; tone: string; body: string }[];
+    impact: { icon: string; body: string }[];
+    image: string;
+    imageAlt: string;
+  };
+}
+
+const { donation } = Astro.props;
+const method = donation.methods[0];
+---
+
+<div class="grid gap-gutter md:grid-cols-12">
+  <Card class="md:col-span-8" padding="lg">
+    <div class="mb-lg flex items-center gap-sm">
+      <span class="material-symbols-outlined text-3xl text-primary" aria-hidden="true">account_balance</span>
+      <h2 class="font-headline-md text-headline-md text-primary">{method.title}</h2>
+    </div>
+    <p class="mb-lg border-b border-surface-variant pb-md font-body-md text-body-md text-on-surface-variant">{method.description}</p>
+    <dl class="space-y-md">
+      {method.details.map((detail) => (
+        <div class="grid gap-xs sm:grid-cols-3 sm:items-center">
+          <dt class="font-label-md text-label-md text-on-surface-variant">{detail.label}</dt>
+          <dd class:list={['font-body-lg text-body-lg text-on-surface sm:col-span-2', detail.format === 'monospace' && 'inline-block rounded-lg bg-surface-container-low p-sm font-mono tracking-wider']}>
+            {detail.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+    <div class="mt-xl rounded-lg border border-tertiary-fixed-dim bg-tertiary-fixed p-md">
+      <div class="flex items-start gap-sm">
+        <span class="material-symbols-outlined text-primary" aria-hidden="true">{donation.instructions.icon}</span>
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-primary">{donation.instructions.title}</h3>
+          <p class="mt-xs font-body-md text-body-md text-on-tertiary-fixed-variant">
+            {donation.instructions.body} Email <a class="text-primary underline" href={`mailto:${site.donationEmail}`}>{site.donationEmail}</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Card>
+  <aside class="flex flex-col gap-gutter md:col-span-4">
+    {donation.notices.map((notice) => (
+      <Card tone="warning">
+        <div class="mb-sm flex items-center gap-sm">
+          <span class="material-symbols-outlined" aria-hidden="true">{notice.icon}</span>
+          <h2 class="font-headline-sm text-headline-sm">{notice.title}</h2>
+        </div>
+        <p class="font-body-md text-body-md">{notice.body}</p>
+      </Card>
+    ))}
+    <Card tone="muted" class="flex-1">
+      <h2 class="font-headline-sm text-headline-sm text-primary">Why Donate?</h2>
+      <ul class="mt-md space-y-md">
+        {donation.impact.map((item) => (
+          <li class="flex items-start gap-sm">
+            <span class="material-symbols-outlined text-secondary" aria-hidden="true">{item.icon}</span>
+            <span class="font-body-md text-body-md text-on-surface-variant">{item.body}</span>
+          </li>
+        ))}
+      </ul>
+    </Card>
+    <ImageFrame src={donation.image} alt={donation.imageAlt} aspect="wide" />
+  </aside>
+</div>

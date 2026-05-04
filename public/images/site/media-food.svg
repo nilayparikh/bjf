@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Prasad distribution</title>
+  <desc id="desc">Volunteers distributing warm meals in a sunlit courtyard.</desc>
+  <rect width="1200" height="900" fill="#fff7e8"/>
+  <path d="M0 585 C240 510 420 610 650 555 C880 500 1010 575 1200 520 L1200 900 L0 900 Z" fill="#e7e2d9"/>
+  <g fill="#293041" opacity="0.74"><rect x="165" y="350" width="105" height="220" rx="42"/><rect x="485" y="325" width="115" height="245" rx="46"/><rect x="830" y="350" width="105" height="220" rx="42"/></g>
+  <g fill="#fd5d4c"><circle cx="218" cy="312" r="42"/><circle cx="542" cy="285" r="44"/><circle cx="883" cy="312" r="42"/></g>
+  <ellipse cx="590" cy="690" rx="305" ry="88" fill="#ffffff" stroke="#c6c6cd" stroke-width="8"/>
+  <path d="M380 690 h420" stroke="#ffb4a9" stroke-width="28" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Hands offering care</title>
+  <desc id="desc">An illustrated seva moment with hands offering food in a quiet courtyard.</desc>
+  <rect width="1200" height="800" fill="#f3f3f4"/>
+  <circle cx="960" cy="145" r="120" fill="#ffdad5"/>
+  <path d="M0 540 C180 490 320 560 500 520 C690 475 840 555 1200 495 L1200 800 L0 800 Z" fill="#e7e2d9"/>
+  <path d="M310 440 C410 390 520 405 610 470 C520 515 405 515 310 440 Z" fill="#fd5d4c" opacity="0.86"/>
+  <path d="M470 395 C560 350 710 385 815 455 C720 505 570 500 470 395 Z" fill="#293041" opacity="0.82"/>
+  <circle cx="600" cy="445" r="50" fill="#fff7e8"/>
+  <path d="M210 570 C330 520 520 565 620 635" fill="none" stroke="#141b2b" stroke-width="36" stroke-linecap="round" opacity="0.62"/>
+  <path d="M990 570 C870 520 680 565 580 635" fill="none" stroke="#b4281e" stroke-width="36" stroke-linecap="round" opacity="0.62"/>
+</svg>

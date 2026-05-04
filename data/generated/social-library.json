@@ -1,0 +1,36 @@
+[
+  {
+    "id": "instagram_seed_annadaan_1",
+    "provider": "instagram",
+    "providerPostId": "seed_annadaan",
+    "sourceUrl": "https://www.instagram.com/brajjancare/",
+    "publishedAt": "2026-05-04T02:17:00Z",
+    "title": "Food Distribution Drive",
+    "caption": "Community meal service near the Yamuna ghats.",
+    "kind": "photo",
+    "url": "/images/site/media-food.svg",
+    "alt": "Volunteers distributing meals in Vrindavan.",
+    "tags": [
+      "annadaan",
+      "seva"
+    ],
+    "source": "generated-social"
+  },
+  {
+    "id": "instagram_seed_temple_1",
+    "provider": "instagram",
+    "providerPostId": "seed_temple",
+    "sourceUrl": "https://www.instagram.com/brajjancare/",
+    "publishedAt": "2026-05-02T06:45:00Z",
+    "title": "Temple Stonework",
+    "caption": "Heritage details from Vrindavan lanes.",
+    "kind": "photo",
+    "url": "/images/site/media-temple.svg",
+    "alt": "Temple stonework in Vrindavan.",
+    "tags": [
+      "heritage",
+      "vrindavan"
+    ],
+    "source": "generated-social"
+  }
+]

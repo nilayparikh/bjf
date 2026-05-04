@@ -1,0 +1,59 @@
+---
+import { formatDateTime } from '../../lib/content';
+import { withBase } from '../../lib/urls';
+import Card from '../ui/Card.astro';
+import Chip from '../ui/Chip.astro';
+
+interface MediaItem {
+  type: string;
+  url: string;
+  alt: string;
+}
+
+interface Props {
+  post: {
+    provider: string;
+    accountName: string;
+    url: string;
+    publishedAt: string;
+    title: string;
+    caption: string;
+    media: MediaItem[];
+    tags: string[];
+    metrics?: { likes?: number; shares?: number };
+  };
+}
+
+const { post } = Astro.props;
+const media = post.media[0];
+const providerIcon = post.provider === 'instagram' ? 'photo_camera' : 'forum';
+---
+
+<Card class="flex h-full flex-col overflow-hidden p-0">
+  {media && (
+    <img src={withBase(media.url)} alt={media.alt} loading="lazy" class="h-52 w-full object-cover" />
+  )}
+  <div class="flex flex-1 flex-col p-md">
+    <div class="mb-sm flex items-center justify-between gap-sm">
+      <Chip icon={providerIcon} tone="outline">{post.accountName}</Chip>
+      <span class="font-label-md text-label-md text-on-surface-variant">{formatDateTime(post.publishedAt)}</span>
+    </div>
+    <h2 class="font-headline-sm text-headline-sm text-primary">{post.title}</h2>
+    <p class="mt-sm flex-1 font-body-md text-body-md text-on-surface-variant">{post.caption}</p>
+    <div class="mt-md flex flex-wrap gap-2">
+      {post.tags.map((tag) => <Chip tone="cream">{tag}</Chip>)}
+    </div>
+    <div class="mt-md flex items-center justify-between border-t border-surface-variant pt-sm">
+      <a href={post.url} class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline">
+        View post
+        <span class="material-symbols-outlined text-base" aria-hidden="true">open_in_new</span>
+      </a>
+      {post.metrics && (
+        <div class="flex items-center gap-sm font-label-md text-label-md text-on-surface-variant">
+          {typeof post.metrics.likes === 'number' && <span>{post.metrics.likes} likes</span>}
+          {typeof post.metrics.shares === 'number' && <span>{post.metrics.shares} shares</span>}
+        </div>
+      )}
+    </div>
+  </div>
+</Card>

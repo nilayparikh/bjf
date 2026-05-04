@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Temple carving</title>
+  <desc id="desc">Detailed temple stonework in warm sandstone tones.</desc>
+  <rect width="1200" height="900" fill="#e7e2d9"/>
+  <rect x="160" y="120" width="880" height="660" rx="24" fill="#f3d3b2" stroke="#b4281e" stroke-opacity="0.25" stroke-width="10"/>
+  <g fill="none" stroke="#293041" stroke-opacity="0.44" stroke-width="12"><path d="M280 680 V320 C280 250 360 250 360 320 V680"/><path d="M500 680 V320 C500 250 580 250 580 320 V680"/><path d="M720 680 V320 C720 250 800 250 800 320 V680"/><path d="M940 680 V320 C940 250 1020 250 1020 320 V680"/></g>
+  <g fill="#fd5d4c" opacity="0.58"><circle cx="430" cy="250" r="42"/><circle cx="650" cy="250" r="42"/><circle cx="870" cy="250" r="42"/></g>
+</svg>

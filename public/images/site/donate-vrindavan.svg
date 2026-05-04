@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Vrindavan temple arches</title>
+  <desc id="desc">Temple arches in Vrindavan lit by soft morning light.</desc>
+  <rect width="1200" height="900" fill="#f4efe6"/>
+  <circle cx="900" cy="180" r="120" fill="#fd5d4c" opacity="0.34"/>
+  <rect x="140" y="180" width="920" height="620" rx="30" fill="#ffffff" stroke="#c6c6cd" stroke-width="8"/>
+  <g fill="none" stroke="#293041" stroke-width="18" opacity="0.7"><path d="M260 720 V400 C260 280 410 280 410 400 V720"/><path d="M525 720 V400 C525 280 675 280 675 400 V720"/><path d="M790 720 V400 C790 280 940 280 940 400 V720"/></g>
+  <path d="M180 760 h840" stroke="#e7e2d9" stroke-width="44" stroke-linecap="round"/>
+</svg>

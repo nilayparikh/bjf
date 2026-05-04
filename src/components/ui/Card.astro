@@ -1,0 +1,26 @@
+---
+interface Props {
+  tone?: 'default' | 'muted' | 'rich' | 'warning';
+  padding?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { tone = 'default', padding = 'md', class: className } = Astro.props;
+
+const tones = {
+  default: 'bg-surface-container-lowest border-outline-variant/70',
+  muted: 'bg-surface-container border-surface-variant',
+  rich: 'bg-primary text-on-primary border-primary',
+  warning: 'bg-error-container text-on-error-container border-secondary-fixed-dim',
+};
+
+const paddingClasses = {
+  sm: 'p-sm',
+  md: 'p-md',
+  lg: 'p-lg',
+};
+---
+
+<article class:list={['rounded-xl border shadow-soft', tones[tone], paddingClasses[padding], className]}>
+  <slot />
+</article>

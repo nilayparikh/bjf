@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Yamuna restoration</title>
+  <desc id="desc">Volunteers restoring a clean Yamuna riverbank.</desc>
+  <rect width="1200" height="800" fill="#eef3f7"/>
+  <path d="M0 430 C220 370 360 455 570 410 C800 360 950 430 1200 380 L1200 800 L0 800 Z" fill="#dbe2f9"/>
+  <path d="M0 610 C260 560 420 645 660 600 C900 550 1040 610 1200 570 L1200 800 L0 800 Z" fill="#293041" opacity="0.2"/>
+  <g fill="#293041" opacity="0.7"><rect x="200" y="330" width="90" height="190" rx="36"/><rect x="760" y="325" width="95" height="195" rx="38"/></g>
+  <g fill="#fd5d4c"><circle cx="245" cy="295" r="38"/><circle cx="808" cy="288" r="40"/></g>
+  <path d="M390 560 h420" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity="0.75"/>
+</svg>

@@ -1,0 +1,43 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import PageHeader from '../../components/content/PageHeader.astro';
+import Button from '../../components/ui/Button.astro';
+import Chip from '../../components/ui/Chip.astro';
+import ImageFrame from '../../components/ui/ImageFrame.astro';
+import Section from '../../components/ui/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id.replace(/\.md$/, '') },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title} description={project.data.summary} activePath="/projects/" image={project.data.image}>
+  <PageHeader title={project.data.title} summary={project.data.summary} eyebrow="Project Detail" />
+  <Section>
+    <div class="grid gap-xl md:grid-cols-[1.1fr_0.9fr] md:items-start">
+      <div class="space-y-md">
+        <div class="flex flex-wrap gap-2">
+          <Chip tone={project.data.status === 'completed' ? 'outline' : 'cream'}>{project.data.status}</Chip>
+          {project.data.tags.map((tag) => <Chip tone="outline">{tag}</Chip>)}
+        </div>
+        <div class="content-rhythm font-body-lg text-body-lg text-on-surface-variant">
+          <Content />
+        </div>
+        <Button href={project.data.ctaHref} variant={project.data.ctaHref === '/donate/' ? 'donation' : 'ghost'}>{project.data.ctaLabel}</Button>
+      </div>
+      <ImageFrame src={project.data.image} alt={project.data.imageAlt} aspect="wide" title={project.data.location} icon="location_on" />
+    </div>
+  </Section>
+</BaseLayout>

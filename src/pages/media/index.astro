@@ -1,0 +1,29 @@
+---
+import GalleryGrid from '../../components/content/GalleryGrid.astro';
+import PageHeader from '../../components/content/PageHeader.astro';
+import Section from '../../components/ui/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByTemplate } from '../../lib/content';
+import { media, socialLibrary } from '../../lib/data';
+
+const page = await getPageByTemplate('media');
+const generatedItems = socialLibrary.map((item) => ({
+  id: item.id,
+  title: item.title,
+  summary: item.caption,
+  kind: item.kind,
+  category: item.tags[0] ?? item.provider,
+  src: item.url,
+  alt: item.alt,
+  span: 'standard',
+  source: item.source,
+}));
+const items = [...media, ...generatedItems];
+---
+
+<BaseLayout title={page.data.seo.title} description={page.data.seo.description} activePath="/media/" image={page.data.heroImage}>
+  <PageHeader title={page.data.title} summary={page.data.summary} eyebrow="Media Gallery" />
+  <Section>
+    <GalleryGrid items={items} />
+  </Section>
+</BaseLayout>

@@ -1,0 +1,71 @@
+---
+import { navigation, site } from '../../lib/data';
+import { withBase } from '../../lib/urls';
+import Button from './Button.astro';
+
+interface Props {
+  activePath?: string;
+}
+
+const { activePath = Astro.url.pathname } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL ?? '/';
+const normalizedActivePath = activePath.startsWith(baseUrl)
+  ? `/${activePath.slice(baseUrl.length)}`.replace('//', '/')
+  : activePath;
+
+function isActive(href: string) {
+  if (href === '/') {
+    return normalizedActivePath === '/' || normalizedActivePath === '';
+  }
+
+  return normalizedActivePath.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-50 border-b border-outline-variant/60 bg-surface/95 backdrop-blur">
+  <nav class="mx-auto flex max-w-container-max items-center justify-between gap-md px-gutter py-4" aria-label="Primary navigation">
+    <a href={withBase('/')} class="font-heading text-2xl font-bold text-primary">{site.shortName}</a>
+    <div class="hidden items-center gap-md md:flex">
+      {navigation.map((item) => (
+        <a
+          href={withBase(item.href)}
+          class:list={[
+            'border-b-2 pb-1 font-label-md text-label-md transition-colors duration-300',
+            isActive(item.href)
+              ? 'border-primary text-primary'
+              : 'border-transparent text-on-surface-variant hover:text-primary',
+          ]}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+    <div class="hidden md:block">
+      <Button href="/donate/" variant="donation" size="sm">Donate</Button>
+    </div>
+    <details class="group relative md:hidden">
+      <summary class="flex cursor-pointer list-none items-center rounded-full border border-outline-variant bg-surface-container-lowest p-2 text-primary">
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        <span class="sr-only">Open navigation</span>
+      </summary>
+      <div class="absolute right-0 mt-3 w-64 rounded-xl border border-outline-variant bg-surface-container-lowest p-sm shadow-ambient">
+        <div class="grid gap-1">
+          {navigation.map((item) => (
+            <a
+              href={withBase(item.href)}
+              class:list={[
+                'rounded-lg px-3 py-2 font-label-md text-label-md',
+                isActive(item.href) ? 'bg-primary-fixed text-on-primary-fixed' : 'text-on-surface-variant hover:bg-surface-container',
+              ]}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
+          <Button href="/donate/" variant="donation" size="sm" class="mt-2 w-full">Donate</Button>
+        </div>
+      </div>
+    </details>
+  </nav>
+</header>

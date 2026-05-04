@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Braj peacock</title>
+  <desc id="desc">A stylized peacock resting in a calm Vrindavan garden.</desc>
+  <rect width="900" height="1200" fill="#e7e2d9"/>
+  <circle cx="650" cy="235" r="135" fill="#dbe2f9"/>
+  <g transform="translate(450 620)">
+    <path d="M0 -350 C-190 -170 -220 120 0 310 C220 120 190 -170 0 -350 Z" fill="#293041"/>
+    <path d="M0 -270 C-130 -110 -140 90 0 220 C140 90 130 -110 0 -270 Z" fill="#141b2b"/>
+    <circle cx="0" cy="-120" r="72" fill="#fd5d4c"/>
+    <g fill="#dbe2f9"><circle cx="-95" cy="10" r="34"/><circle cx="95" cy="10" r="34"/><circle cx="0" cy="115" r="34"/></g>
+  </g>
+  <rect x="130" y="950" width="640" height="72" rx="36" fill="#cac6be"/>
+</svg>

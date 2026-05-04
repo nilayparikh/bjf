@@ -1,0 +1,22 @@
+---
+import { render } from 'astro:content';
+import DonationDetails from '../../components/content/DonationDetails.astro';
+import PageHeader from '../../components/content/PageHeader.astro';
+import Section from '../../components/ui/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getDonationPage } from '../../lib/content';
+import { donation } from '../../lib/data';
+
+const page = await getDonationPage();
+const { Content } = await render(page);
+---
+
+<BaseLayout title={page.data.seo.title} description={page.data.seo.description} activePath="/donate/" image={page.data.heroImage}>
+  <PageHeader title={page.data.title} summary={page.data.summary} eyebrow="Donate" />
+  <Section>
+    <div class="mx-auto mb-lg max-w-3xl text-center font-body-lg text-body-lg text-on-surface-variant content-rhythm">
+      <Content />
+    </div>
+    <DonationDetails donation={donation} />
+  </Section>
+</BaseLayout>

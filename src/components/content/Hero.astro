@@ -1,0 +1,44 @@
+---
+import Button from '../ui/Button.astro';
+import Chip from '../ui/Chip.astro';
+import { withBase } from '../../lib/urls';
+
+interface Action {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  summary: string;
+  eyebrow?: string;
+  image?: string;
+  imageAlt?: string;
+  primaryCta?: Action;
+  secondaryCta?: Action;
+}
+
+const { title, summary, eyebrow, image, imageAlt = '', primaryCta, secondaryCta } = Astro.props;
+---
+
+<section class="relative isolate flex min-h-[min(760px,calc(100vh-4rem))] items-center overflow-hidden">
+  {image && (
+    <div class="absolute inset-0 -z-10">
+      <img src={withBase(image)} alt={imageAlt} class="h-full w-full object-cover opacity-90" />
+      <div class="absolute inset-0 bg-gradient-to-b from-surface/50 via-surface/72 to-background"></div>
+    </div>
+  )}
+  <div class="mx-auto w-full max-w-container-max px-gutter py-xl text-center">
+    <div class="mx-auto max-w-4xl space-y-md">
+      {eyebrow && <Chip tone="cream">{eyebrow}</Chip>}
+      <h1 class="font-headline-lg text-headline-lg text-primary">{title}</h1>
+      <p class="mx-auto max-w-2xl font-body-lg text-body-lg text-on-surface-variant">{summary}</p>
+      {(primaryCta || secondaryCta) && (
+        <div class="flex flex-wrap justify-center gap-sm pt-sm">
+          {primaryCta && <Button href={primaryCta.href} variant="donation" size="lg">{primaryCta.label}</Button>}
+          {secondaryCta && <Button href={secondaryCta.href} variant="ghost" size="lg">{secondaryCta.label}</Button>}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

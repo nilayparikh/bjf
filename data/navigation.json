@@ -1,0 +1,32 @@
+[
+  {
+    "label": "Home",
+    "href": "/",
+    "key": "home"
+  },
+  {
+    "label": "Media",
+    "href": "/media/",
+    "key": "media"
+  },
+  {
+    "label": "Daily",
+    "href": "/daily/",
+    "key": "daily"
+  },
+  {
+    "label": "Social",
+    "href": "/social/",
+    "key": "social"
+  },
+  {
+    "label": "Projects",
+    "href": "/projects/",
+    "key": "projects"
+  },
+  {
+    "label": "Contacts",
+    "href": "/contact/",
+    "key": "contact"
+  }
+]

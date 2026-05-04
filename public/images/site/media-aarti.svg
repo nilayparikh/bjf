@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Yamuna aarti</title>
+  <desc id="desc">Morning aarti lamps near the Yamuna river.</desc>
+  <rect width="1200" height="900" fill="#141b2b"/>
+  <circle cx="920" cy="180" r="115" fill="#fd5d4c" opacity="0.65"/>
+  <path d="M0 540 C220 480 430 590 650 525 C850 470 1010 540 1200 500 L1200 900 L0 900 Z" fill="#dbe2f9" opacity="0.3"/>
+  <g fill="#fff8ec" opacity="0.9"><path d="M260 590 l35 80 h-70z"/><path d="M520 610 l35 80 h-70z"/><path d="M780 590 l35 80 h-70z"/></g>
+  <g fill="#fd5d4c"><ellipse cx="260" cy="575" rx="34" ry="58"/><ellipse cx="520" cy="595" rx="34" ry="58"/><ellipse cx="780" cy="575" rx="34" ry="58"/></g>
+</svg>

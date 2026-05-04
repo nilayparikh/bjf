@@ -1,0 +1,71 @@
+[
+  {
+    "id": "instagram_seed_annadaan",
+    "provider": "instagram",
+    "providerPostId": "seed_annadaan",
+    "accountName": "@brajjancare",
+    "url": "https://www.instagram.com/brajjancare/",
+    "publishedAt": "2026-05-04T02:17:00Z",
+    "title": "Serving the Braj Community",
+    "caption": "A glimpse into our recent food distribution drive at the Yamuna ghats. Grateful for the continued support of our global family.",
+    "media": [
+      {
+        "type": "image",
+        "url": "/images/site/media-food.svg",
+        "alt": "Volunteers distributing meals in Vrindavan."
+      }
+    ],
+    "tags": [
+      "annadaan",
+      "seva"
+    ],
+    "metrics": {
+      "likes": 124,
+      "shares": 18
+    }
+  },
+  {
+    "id": "facebook_seed_literacy",
+    "provider": "facebook",
+    "providerPostId": "seed_literacy",
+    "accountName": "Braj Jan Care Foundation",
+    "url": "https://www.facebook.com/brajjancare/",
+    "publishedAt": "2026-05-03T11:00:00Z",
+    "title": "Village Learning Circle Begins",
+    "caption": "Today we opened a small learning circle for children near Govardhan. Education is a daily blessing when the whole community carries it together.",
+    "media": [],
+    "tags": [
+      "education",
+      "community"
+    ],
+    "metrics": {
+      "likes": 86,
+      "shares": 12
+    }
+  },
+  {
+    "id": "instagram_seed_temple",
+    "provider": "instagram",
+    "providerPostId": "seed_temple",
+    "accountName": "@brajjancare",
+    "url": "https://www.instagram.com/brajjancare/",
+    "publishedAt": "2026-05-02T06:45:00Z",
+    "title": "Heritage In Every Stone",
+    "caption": "A quiet morning documenting temple details before our volunteer cleanup round through the lanes of Vrindavan.",
+    "media": [
+      {
+        "type": "image",
+        "url": "/images/site/media-temple.svg",
+        "alt": "Temple stonework in Vrindavan."
+      }
+    ],
+    "tags": [
+      "heritage",
+      "vrindavan"
+    ],
+    "metrics": {
+      "likes": 143,
+      "shares": 21
+    }
+  }
+]

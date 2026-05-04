@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Vrindavan morning river scene</title>
+  <desc id="desc">A serene illustrated morning view of Vrindavan with river light and temple silhouettes.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff2d8"/><stop offset="0.54" stop-color="#f9f9f9"/><stop offset="1" stop-color="#dbe2f9"/></linearGradient>
+    <linearGradient id="river" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#293041" stop-opacity="0.28"/><stop offset="1" stop-color="#fd5d4c" stop-opacity="0.2"/></linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <circle cx="1200" cy="210" r="120" fill="#fd5d4c" opacity="0.28"/>
+  <path d="M0 555 C220 505 360 560 560 520 C760 480 920 545 1130 505 C1320 470 1460 500 1600 455 L1600 1000 L0 1000 Z" fill="url(#river)"/>
+  <path d="M0 650 C230 620 390 700 620 655 C820 620 1030 690 1220 640 C1400 590 1500 640 1600 600 L1600 1000 L0 1000 Z" fill="#141b2b" opacity="0.16"/>
+  <g fill="#293041" opacity="0.72">
+    <path d="M180 520 h150 v220 h-150z"/><path d="M210 445 h90 v75 h-90z"/><path d="M235 390 l45 55 h-90z"/>
+    <path d="M430 500 h120 v240 h-120z"/><path d="M455 420 h70 v80 h-70z"/><path d="M490 360 l55 60 h-110z"/>
+    <path d="M1240 500 h150 v240 h-150z"/><path d="M1270 430 h90 v70 h-90z"/><path d="M1315 365 l55 65 h-110z"/>
+  </g>
+  <path d="M180 805 C430 760 590 830 840 790 C1070 755 1230 810 1450 770" fill="none" stroke="#ffffff" stroke-width="10" opacity="0.5"/>
+</svg>

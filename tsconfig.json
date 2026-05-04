@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "isolatedModules": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022",
+    "types": ["astro/client"],
+    "verbatimModuleSyntax": true
+  },
+  "include": [".astro/types.d.ts", "astro.config.mjs", "src/**/*", "tailwind.config.mjs"],
+  "exclude": ["dist", "node_modules"]
+}

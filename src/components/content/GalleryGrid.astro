@@ -1,0 +1,57 @@
+---
+import Chip from '../ui/Chip.astro';
+import ImageFrame from '../ui/ImageFrame.astro';
+
+interface GalleryItem {
+  id: string;
+  title: string;
+  summary?: string;
+  kind: string;
+  category?: string;
+  src?: string;
+  url?: string;
+  alt: string;
+  span?: string;
+  source?: string;
+}
+
+interface Props {
+  items: GalleryItem[];
+}
+
+const { items } = Astro.props;
+
+const spanClasses = {
+  standard: '',
+  wide: 'md:col-span-2',
+  tall: 'md:row-span-2',
+  'wide-tall': 'md:col-span-2 md:row-span-2',
+};
+---
+
+<div class="space-y-lg">
+  <div class="flex flex-wrap justify-center gap-sm">
+    <Chip icon="grid_view" tone="primary">All Media</Chip>
+    <Chip icon="photo_camera" tone="outline">Photos</Chip>
+    <Chip icon="videocam" tone="outline">Videos</Chip>
+  </div>
+  <div class="grid auto-rows-[250px] grid-cols-1 gap-sm md:grid-cols-4">
+    {items.map((item) => {
+      const mediaSource = item.src ?? item.url ?? '';
+      const span = item.span && item.span in spanClasses ? item.span : 'standard';
+      return (
+        <article class:list={[spanClasses[span as keyof typeof spanClasses], 'min-h-[250px]']}>
+          <ImageFrame
+            src={mediaSource}
+            alt={item.alt}
+            aspect="free"
+            title={item.title}
+            label={item.category ?? item.source}
+            icon={item.kind === 'video' ? 'play_arrow' : 'photo_camera'}
+            class="h-full"
+          />
+        </article>
+      );
+    })}
+  </div>
+</div>

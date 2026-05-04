@@ -1,0 +1,18 @@
+---
+import PageHeader from '../../components/content/PageHeader.astro';
+import Timeline from '../../components/content/Timeline.astro';
+import Section from '../../components/ui/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageByTemplate, getSortedDailyUpdates, groupDailyUpdatesByDate } from '../../lib/content';
+
+const page = await getPageByTemplate('daily');
+const updates = await getSortedDailyUpdates();
+const groups = groupDailyUpdatesByDate(updates);
+---
+
+<BaseLayout title={page.data.seo.title} description={page.data.seo.description} activePath="/daily/" image={page.data.heroImage}>
+  <PageHeader title={page.data.title} summary={page.data.summary} eyebrow="Daily Feed" />
+  <Section>
+    <Timeline groups={groups} />
+  </Section>
+</BaseLayout>

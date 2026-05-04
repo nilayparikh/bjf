@@ -1,0 +1,33 @@
+{
+  "name": "Braj Jan Care Foundation",
+  "shortName": "Braj Jan Care",
+  "tagline": "Serving the soul of Vrindavan.",
+  "baseUrl": "https://example.github.io",
+  "defaultLocale": "en",
+  "contactEmail": "info@brajjancare.org",
+  "donationEmail": "donations@brajjancare.org",
+  "phone": "+91 98765 43210",
+  "address": "Vrindavan, Mathura, Uttar Pradesh, India",
+  "whatsappUrl": "https://wa.me/919876543210",
+  "socialLinks": [
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/brajjancare",
+      "icon": "photo_camera"
+    },
+    {
+      "label": "Facebook",
+      "href": "https://www.facebook.com/brajjancare",
+      "icon": "forum"
+    },
+    {
+      "label": "Email",
+      "href": "mailto:info@brajjancare.org",
+      "icon": "mail"
+    }
+  ],
+  "seo": {
+    "title": "Braj Jan Care Foundation",
+    "description": "Serving Vrindavan through seva, ecology, daily care, and community support."
+  }
+}

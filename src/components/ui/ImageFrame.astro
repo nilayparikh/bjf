@@ -1,0 +1,36 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  aspect?: 'wide' | 'square' | 'portrait' | 'hero' | 'free';
+  title?: string;
+  label?: string;
+  icon?: string;
+  class?: string;
+}
+
+import { withBase } from '../../lib/urls';
+
+const { src, alt, aspect = 'wide', title, label, icon, class: className } = Astro.props;
+
+const aspects = {
+  wide: 'aspect-[4/3]',
+  square: 'aspect-square',
+  portrait: 'aspect-[3/4]',
+  hero: 'aspect-[16/9]',
+  free: 'min-h-[16rem]',
+};
+---
+
+<figure class:list={['group relative overflow-hidden rounded-xl border border-outline-variant/70 bg-surface-container shadow-soft', aspects[aspect], className]}>
+  <img src={withBase(src)} alt={alt} loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+  {(title || label || icon) && (
+    <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/85 via-primary/40 to-transparent p-md text-on-primary">
+      <div class="flex items-center gap-2">
+        {icon && <span class="material-symbols-outlined" aria-hidden="true">{icon}</span>}
+        {label && <span class="rounded-full bg-tertiary-fixed px-2 py-1 font-label-md text-[0.7rem] uppercase text-on-tertiary-fixed">{label}</span>}
+      </div>
+      {title && <h3 class="mt-2 font-headline-sm text-headline-sm">{title}</h3>}
+    </figcaption>
+  )}
+</figure>

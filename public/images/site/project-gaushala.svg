@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Gaushala expansion</title>
+  <desc id="desc">A calm cow shelter with clean enclosures and warm light.</desc>
+  <rect width="1200" height="800" fill="#f4efe6"/>
+  <path d="M120 320 L600 120 L1080 320 V720 H120 Z" fill="#ffffff" stroke="#c6c6cd" stroke-width="10"/>
+  <path d="M190 335 H1010" stroke="#293041" stroke-width="16" opacity="0.6"/>
+  <ellipse cx="450" cy="560" rx="170" ry="85" fill="#fff8ec" stroke="#293041" stroke-width="8"/>
+  <ellipse cx="760" cy="565" rx="170" ry="85" fill="#ffffff" stroke="#293041" stroke-width="8"/>
+  <g fill="#fd5d4c"><circle cx="405" cy="545" r="14"/><circle cx="495" cy="545" r="14"/><circle cx="720" cy="550" r="14"/><circle cx="805" cy="550" r="14"/></g>
+</svg>

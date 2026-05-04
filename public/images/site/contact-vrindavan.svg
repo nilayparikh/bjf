@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Vrindavan lane</title>
+  <desc id="desc">A quiet Vrindavan lane leading toward temple arches.</desc>
+  <rect width="1200" height="800" fill="#fff8ec"/>
+  <path d="M0 690 L500 250 H700 L1200 690 Z" fill="#e7e2d9"/>
+  <path d="M520 250 V120 H680 V250" fill="#293041" opacity="0.75"/>
+  <path d="M560 250 V175 C560 135 640 135 640 175 V250" fill="#fff8ec"/>
+  <g fill="#fd5d4c" opacity="0.7"><circle cx="260" cy="250" r="54"/><circle cx="940" cy="250" r="54"/></g>
+  <path d="M420 690 C500 570 700 570 780 690" fill="none" stroke="#293041" stroke-width="12" opacity="0.35"/>
+</svg>

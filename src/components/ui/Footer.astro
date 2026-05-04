@@ -1,0 +1,36 @@
+---
+import { navigation, site } from '../../lib/data';
+import { withBase } from '../../lib/urls';
+---
+
+<footer class="border-t border-outline-variant bg-surface-container-low py-lg">
+  <div class="mx-auto grid max-w-container-max gap-lg px-gutter md:grid-cols-[1.4fr_1fr_1fr]">
+    <div class="space-y-sm">
+      <p class="font-heading text-xl font-semibold text-primary">{site.name}</p>
+      <p class="max-w-md font-body-md text-body-md text-on-surface-variant">{site.tagline}</p>
+      <p class="font-body-md text-body-md text-on-surface-variant">© 2026 {site.name}.</p>
+    </div>
+    <div>
+      <h2 class="font-label-md text-label-md uppercase text-primary">Explore</h2>
+      <div class="mt-sm grid gap-2">
+        {navigation.map((item) => (
+          <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href={withBase(item.href)}>{item.label}</a>
+        ))}
+      </div>
+    </div>
+    <div>
+      <h2 class="font-label-md text-label-md uppercase text-primary">Connect</h2>
+      <div class="mt-sm grid gap-2">
+        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+        <p class="font-body-md text-body-md text-on-surface-variant">{site.address}</p>
+        <div class="flex gap-2 pt-2">
+          {site.socialLinks.map((link) => (
+            <a href={link.href} class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant text-primary hover:bg-primary-fixed" aria-label={link.label}>
+              <span class="material-symbols-outlined" aria-hidden="true">{link.icon}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

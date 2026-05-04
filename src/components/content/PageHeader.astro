@@ -1,0 +1,29 @@
+---
+import Button from '../ui/Button.astro';
+import Chip from '../ui/Chip.astro';
+
+interface Action {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  summary: string;
+  eyebrow?: string;
+  action?: Action;
+}
+
+const { title, summary, eyebrow, action } = Astro.props;
+---
+
+<header class="border-b border-outline-variant bg-surface-container-low py-xl">
+  <div class="mx-auto flex max-w-container-max flex-col gap-md px-gutter md:flex-row md:items-end md:justify-between">
+    <div class="max-w-3xl space-y-sm">
+      {eyebrow && <Chip tone="cream">{eyebrow}</Chip>}
+      <h1 class="font-headline-lg text-headline-lg text-primary">{title}</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant">{summary}</p>
+    </div>
+    {action && <Button href={action.href} variant="donation">{action.label}</Button>}
+  </div>
+</header>
